@@ -103,5 +103,37 @@
   display: flex;
   justify-content: center;
 }
+/* upto */
 
+
+@media screen and (max-width:400px) { 
+  .banner-card{
+    height:25vh;
+  }
+
+  .banner-image{
+    height:30vh;
+  }
+
+  .banner-title{
+    top:10vh;
+    left:5vw;
+  }
+
+  .banner-text{
+    top:15vh;
+    left:5vw;
+  }
+
+  .movies-card{
+    width: 40vw;
+    margin: 0.1rem;
+  }
+  .movies-button{
+    width: 80%;
+  }
+  .movies-imgage{
+    width: 40vw;
+  }
+}
 

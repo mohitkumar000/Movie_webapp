@@ -1,6 +1,25 @@
 import React, { Component } from 'react'
 import { movies } from './getmovies'
 export default class List extends Component {
+  constructor(){
+    super();
+    this.state={
+      hover:" "
+
+    }
+  }
+  handleEnter=(id)=>{
+    this.setState({
+      hover:id
+    })
+    
+  };
+  handleleave=()=>{
+    this.setState({
+      hover:' '
+    })
+  };
+
   render() {
     let movie =movies.results;
     return (
@@ -22,23 +41,44 @@ export default class List extends Component {
         <div className="movies-list">
           {
                 movie.map((movieObj)=>(
-                  <div class="card movies-card" >
+                  <div class="card movies-card" 
+                  onMouseEnter={()=>this.handleEnter(movieObj.id)} 
+                  onMouseLeave={this.handleleave} >
                   <img src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`} className="card-img-top movies-image" alt="..."
-                      style={{height:"40vh",width: "35vh"}}
+                      // style={{height:"40vh",width: "35vh"}}
                   />
                   {/* <div className="card-body banner-title"> */}
-                          <h5 className="card-title movies-title ">{movieObj.original_title}</h5>
+                          <h5 className="card-title movies-title ">
+                            {movieObj.original_title}</h5>
                       {/* <p className="card-text movie-text">{movieObj.overview}</p> */}
                       <div className="button-wrapper">
-                       <a href="#" class="btn btn-primary movies-button">Add to faviourate</a> 
+                        {
+                          this.state.hover==movieObj.id &&
+                          <a href="#" class="btn btn-primary movies-button">
+                            Add to faviourate</a> 
+
+                        }
+                       
+                        
                   </div> 
+
               </div>
 
-              ))
-
-          }
+              ))}
           </div>
+
           <div className="pagination">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" href="#">Previous</a>
+                  </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
              
           </div>
           </div>
